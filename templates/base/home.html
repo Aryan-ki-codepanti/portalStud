@@ -5,5 +5,9 @@ Home | PortalBud
 {% endblock title %}
 
 {% block content %}
-<h1> Hello Aryan </h1> 
+    <div class="container my-5"> 
+        {% if request.user.is_authenticated %}
+            {% include "components/marksheets.html" %}
+        {% endif %}
+    </div> 
 {% endblock content %}
