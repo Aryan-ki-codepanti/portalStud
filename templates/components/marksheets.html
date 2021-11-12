@@ -1,6 +1,6 @@
 {% load static %}
 <div>
-    <h4> My Marksheets </h4>
+    <h1 class="marksheet-head text-center mb-5"> My Marksheets </h1>
 
     <div class="marksheet-container">
 
@@ -9,21 +9,24 @@
                 <div class="sno d-flex justify-content-center align-items-center">
                     <h1> {{ forloop.counter }} <h1>
                 </div>
-                <div class="d-flex justify-content-between flex-grow-1">
-                    <div>
+                <div class="wrapper-btns-content d-flex flex-column justify-content-between flex-grow-1 gap-3">
 
-                        <p> Average Score : {{ marksheet.avg }} </p>
-                        <p> Highest Score: {{ marksheet.highest }} </p>
-                        <p class="mb-0"> Lowest Score: {{ marksheet.lowest }} </p>
+                    <div class="marksheet-content">
+                        <h2 class="marksheet-title mb-3 pb-0"> {{ marksheet.marksheet.name }} </h2>
+                        <p class="mb-0"> Best - {{ marksheet.highest }}  </p>
+                        <p class="mb-3"> Average - {{ marksheet.avg }}  </p>
+                        <span>
+                            Created At: {{ marksheet.marksheet.timeStamp|date:"M d , Y" }}
+                        </span>
                     </div>
                     
-                    <div>
-                        <p> Created At: {{ marksheet.marksheet.timeStamp|date:"M d, Y" }} </p>
-                    </div>
-                    
-                    <div class="d-flex flex-column justify-content-center gap-3">
-                        <button class="btn btn-primary">Remove</button>
-                        <button class="btn btn-primary">Update</button>
+                    <div class="marksheet-btn-box d-flex  gap-3">
+                        <div>
+                            <button class="btn btn-primary">Remove</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                        </div>
                     </div>
                 </div>
             </div>

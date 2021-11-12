@@ -1,15 +1,31 @@
 
+.marksheet-title{
+    font-weight: 600;
+}
+
+.marksheet-content p{
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+.marksheet-content span{
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.marksheet-head{
+    font-weight: 700;
+    font-size: 3.2rem;
+}
 
 .marksheet-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit , minmax(600px , 1fr));
+    grid-template-columns: repeat(auto-fit , minmax(400px , 1fr));
+    gap: 1.2em;
 }
 
 .marksheet{
-    border: 2px solid rgb(182, 179, 179);
     border-radius: 25px;
     padding: 1em ;
-    margin: 1.3em 0;
     font-family: "Montserrat";
     color: white;
 }
@@ -18,4 +34,26 @@
     border-right: 2px solid rgb(182, 179, 179);
     padding-right: 0.9em;
     border-radius: 0.5em;
+}
+
+@media screen and (max-width: 990px) {
+    
+    .wrapper-btns-content{  
+        flex-direction: row !important;
+    }
+
+    .marksheet-btn-box{
+        flex-direction: column;
+        justify-content: space-evenly;
+    } 
+}
+
+@media screen and (max-width: 440px) {
+    .wrapper-btns-content{  
+        flex-direction: column !important;
+    }
+    .marksheet-btn-box{
+        flex-direction: row;
+        justify-content: space-between;
+    } 
 }
