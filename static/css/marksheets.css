@@ -1,0 +1,14 @@
+
+.marksheet{
+    border: 2px solid rgb(182, 179, 179);
+    border-radius: 12px;
+    padding: 0.9em ;
+    margin: 1.3em 0;
+    font-family: "Montserrat";
+}
+
+.sno{
+    border-right: 2px solid rgb(182, 179, 179);
+    padding-right: 0.9em;
+    border-radius: 0.5em;
+}

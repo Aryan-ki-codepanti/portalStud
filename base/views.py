@@ -46,6 +46,9 @@ def home(request):
                     )
                 )
 
+            bestSubs = list(map( lambda sub: sub.capitalize() if sub != "computer_science" else "Computer Science" , bestSubs))
+            worstSubs = list(map( lambda sub: sub.capitalize() if sub != "computer_science" else "Computer Science" , worstSubs))
+
             print(bestSubs)
             print(worstSubs)
 
