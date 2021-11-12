@@ -1,10 +1,17 @@
 
+
+.marksheet-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(600px , 1fr));
+}
+
 .marksheet{
     border: 2px solid rgb(182, 179, 179);
-    border-radius: 12px;
-    padding: 0.9em ;
+    border-radius: 25px;
+    padding: 1em ;
     margin: 1.3em 0;
     font-family: "Montserrat";
+    color: white;
 }
 
 .sno{

@@ -13,6 +13,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = [ 'username' ]
 
 class MarkSheet(models.Model):
+    name = models.CharField(max_length=200 , default="Unnamed")
     english = models.DecimalField(default=0 , decimal_places=1 , max_digits=5)
     maths = models.DecimalField(default=0 , decimal_places=1 , max_digits=5)
     physics = models.DecimalField(default=0 , decimal_places=1 , max_digits=5)
@@ -21,7 +22,8 @@ class MarkSheet(models.Model):
     grade = models.CharField(max_length=1 , default='A')
 
     student = models.ForeignKey(User , on_delete=models.CASCADE)
+    timeStamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.student.username}'s Scorecard : {self.grade}"
+        return f"{self.name} - {self.student.username}"
 
