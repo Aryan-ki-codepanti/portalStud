@@ -8,6 +8,14 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+
+# USER 
+@login_required(login_url="/login")
+def logout_student(request):
+    logout(request)
+    return redirect("Home")
+
+
 # CRUD marksheets
 def home(request):
 
@@ -31,20 +39,21 @@ def home(request):
     return render(request, "base/home.html", context)
 
 # Delete Marksheet
+@login_required(login_url="/login")
 def deleteMarksheet(request , id):
 
-    if request.method == "GET":
-        return redirect("Home")
-
     marksheet = MarkSheet.objects.get(id=id)
-    
     if (request.user != marksheet.student):
         return redirect("Home")
+
+    if request.method == "GET":
+        context = {
+            "marksheet" : marksheet
+        }
+        return render( request , "base/deleteMarksheet.html" , context )
+
+    
     
     marksheet.delete()
     return redirect("Home")
 
-@login_required(login_url="/login")
-def logout_student(request):
-    logout(request)
-    return redirect("Home")

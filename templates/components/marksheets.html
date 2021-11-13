@@ -1,6 +1,9 @@
 {% load static %}
 <div>
-    <h1 class="marksheet-head text-center mb-5"> My Marksheets </h1>
+    <h1 class="marksheet-head d-flex align-items-center justify-content-center mb-5"> 
+        My Marksheets
+        <img class="mx-2"  src="{% static 'img/marksheet.jpg' %}" alt="">  
+    </h1>
 
     <div class="marksheet-container">
 
@@ -25,7 +28,7 @@
                             <button class="btn btn-primary"><i class="fas fa-pencil-alt mx-3"></i></button>
                         </div>
                         <div>
-                            <button class="btn btn-primary"> <i class="far mx-3 fa-trash-alt"></i></button>
+                            <a class="btn btn-primary" href="{% url 'deleteMarksheet' marksheet.marksheet.id %}"> <i class="far mx-3 fa-trash-alt"></i></a>
                         </div>
                     </div>
                 </div>
