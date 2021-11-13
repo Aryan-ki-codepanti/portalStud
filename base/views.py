@@ -1,4 +1,6 @@
 from django.shortcuts import redirect, render
+
+from base.utils import getMarksheetSummary
 from .models import User, MarkSheet
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -6,68 +8,21 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+# CRUD marksheets
 def home(request):
 
     if request.user.is_authenticated:
         marksheets = MarkSheet.objects.filter(student=request.user)
         marksheet_summary = []
-
         for marksheet in marksheets:
-
-            marks = {
-                "maths": marksheet.maths,
-                "computer_science": marksheet.computer_science,
-                "english": marksheet.english,
-                "chemistry": marksheet.chemistry,
-                "physics": marksheet.physics
-            }
-
-            marks_keyPairs = list(marks.items())
-            marks_keyPairs.sort(key=lambda mark : mark[1])
-
-            highest = marks_keyPairs[-1][1]
-            lowest = marks_keyPairs[0][1]
-
-            bestSubs = list(
-                map( 
-                    lambda mark: mark[0] , 
-                    filter( 
-                        lambda mark: mark[1] == highest , marks_keyPairs
-                        )
-                    )
-                )
-
-            worstSubs = list(
-                map( 
-                    lambda mark: mark[0] , 
-                    filter( 
-                        lambda mark: mark[1] == lowest , marks_keyPairs
-                        )
-                    )
-                )
-
-            bestSubs = list(map( lambda sub: sub.capitalize() if sub != "computer_science" else "Computer Science" , bestSubs))
-            worstSubs = list(map( lambda sub: sub.capitalize() if sub != "computer_science" else "Computer Science" , worstSubs))
-
-            print(bestSubs)
-            print(worstSubs)
-
-            summary = {
-                "marksheet": marksheet,
-                "avg": (marksheet.maths + marksheet.computer_science + marksheet.english + marksheet.physics + marksheet.chemistry)/5 ,
-                "highest": highest,
-                "lowest": lowest,
-                "bestSubs":bestSubs ,
-                "worstSubs": worstSubs 
-            }
-
+            summary = getMarksheetSummary(marksheet)
             marksheet_summary.append(summary)
 
-        print(marksheet_summary)
         context = {
             "marksheets": marksheets,
             "marksheet_summary": marksheet_summary 
         }
+
     else:
         context = {
 
@@ -75,6 +30,19 @@ def home(request):
 
     return render(request, "base/home.html", context)
 
+# Delete Marksheet
+def deleteMarksheet(request , id):
+
+    if request.method == "GET":
+        return redirect("Home")
+
+    marksheet = MarkSheet.objects.get(id=id)
+    
+    if (request.user != marksheet.student):
+        return redirect("Home")
+    
+    marksheet.delete()
+    return redirect("Home")
 
 @login_required(login_url="/login")
 def logout_student(request):
