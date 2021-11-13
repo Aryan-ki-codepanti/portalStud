@@ -1,0 +1,19 @@
+.form-container{
+    font-size: 1.1rem;
+    font-family: "Montserrat";
+}
+
+.form-container label{
+    width: 200px;
+    font-weight: 600;
+}
+.form-container input{
+    padding: 0.26em 0.7em;
+    border-radius: 10px;
+    border: 2px solid #eaeaea;
+}
+
+.form-container button{
+    border-radius: 30px;
+    padding: 0.5em 1em;
+}

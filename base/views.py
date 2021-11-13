@@ -73,6 +73,9 @@ def updateMarksheet(request , id):
         }
         return render( request , "base/updateMarksheet.html" , context )
         
-    # POST Update logic
+    # POST : Update logic
+    form = MarkSheetForm(data=request.POST , instance=marksheet)
+    if form.is_valid():
+        form.save()
     return redirect("Home")
 
