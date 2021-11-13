@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Update {{ marksheet.name }} | PortalStud
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2> Update my Marksheet </h2>  
+
+        <div class="form-container">
+            <form>
+            {% for field in form %}
+                <div class="d-flex">
+                    <label class="form-label"> {{ field.label }} </label> 
+                    {{ field }} 
+                </div>
+            {% endfor %}
+                <button type="submit" class="btn btn-success" > Update </button>
+            </form>
+        </div>
+
+        
+    </div>
+{% endblock content %}

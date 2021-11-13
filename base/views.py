@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 
 from base.utils import getMarksheetSummary
-from .models import User, MarkSheet
+from base.models import User, MarkSheet
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from base.forms import MarkSheetForm
 
 # Create your views here.
 
@@ -51,9 +52,27 @@ def deleteMarksheet(request , id):
             "marksheet" : marksheet
         }
         return render( request , "base/deleteMarksheet.html" , context )
-
-    
-    
+        
     marksheet.delete()
+    return redirect("Home")
+
+# Update Marksheet
+@login_required(login_url="/login")
+def updateMarksheet(request , id):
+    marksheet = MarkSheet.objects.get(id=id)
+
+    if (request.user != marksheet.student):
+        return redirect("Home")
+
+    if request.method == "GET":
+        form = MarkSheetForm(instance=marksheet)
+        
+        context = {
+            "marksheet" : marksheet,
+            "form": form
+        }
+        return render( request , "base/updateMarksheet.html" , context )
+        
+    # POST Update logic
     return redirect("Home")
 

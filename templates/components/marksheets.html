@@ -25,7 +25,7 @@
                     
                     <div class="marksheet-btn-box d-flex  gap-3">
                         <div>
-                            <button class="btn btn-primary"><i class="fas fa-pencil-alt mx-3"></i></button>
+                            <a class="btn btn-primary" href="{% url 'updateMarksheet' marksheet.marksheet.id %}"><i class="fas fa-pencil-alt mx-3"></i></a>
                         </div>
                         <div>
                             <a class="btn btn-primary" href="{% url 'deleteMarksheet' marksheet.marksheet.id %}"> <i class="far mx-3 fa-trash-alt"></i></a>
