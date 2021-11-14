@@ -45,6 +45,7 @@ def deleteMarksheet(request , id):
 
     marksheet = MarkSheet.objects.get(id=id)
     if (request.user != marksheet.student):
+        messages.error(request , "You are unauthorized to do so!")
         return redirect("Home")
 
     if request.method == "GET":
@@ -63,6 +64,7 @@ def updateMarksheet(request , id):
     marksheet = MarkSheet.objects.get(id=id)
 
     if (request.user != marksheet.student):
+        messages.error(request , "You are unauthorized to do so!")
         return redirect("Home")
 
     if request.method == "GET":
