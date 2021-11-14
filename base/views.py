@@ -83,3 +83,24 @@ def updateMarksheet(request , id):
     messages.success(request , "Marksheet updated  successfully") 
     return redirect("Home")
 
+# Add Marksheet
+@login_required(login_url="/login")
+def addMarksheet(request):
+
+    # POST request add logic
+    if request.method == "POST":
+        form = MarkSheetForm(data=request.POST)
+        if form.is_valid():
+            marksheet = form.save(commit=False)
+            marksheet.student = request.user 
+            marksheet.save()
+            messages.success(request , "Marksheet added successfully")
+            return redirect("Home")        
+
+    form = MarkSheetForm()        
+    context = {
+        "form": form
+    }
+    return render( request , "base/addMarksheet.html" , context )
+    
+

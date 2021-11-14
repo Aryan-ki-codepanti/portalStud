@@ -1,4 +1,16 @@
 
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a{
+    font-size: 1.4rem;
+    padding: 0.4em 0.8em;
+    border-radius: 25px;
+}
+
 .marksheet-title{
     font-weight: 600;
 }
@@ -66,4 +78,11 @@
         flex-direction: row;
         justify-content: space-between;
     } 
+}
+@media screen and (max-width: 550px) {
+    .header{
+        flex-direction: column;
+        justify-content: center;
+        gap:0.5em
+    }
 }

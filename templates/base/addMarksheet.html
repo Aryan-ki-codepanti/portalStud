@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Add Marksheet | PortalStud
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="fw-600 mb-5 text-center"> Add a Marksheet </h2>  
+
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+            {% for field in form %}
+                <div class="d-flex my-3 align-items-center gap-3">
+                    <label class=""> {{ field.label }} </label> 
+                    {{ field }} 
+                </div>
+            {% endfor %}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success mt-3" > Add </button>
+                </div>
+            </form>
+        </div>
+
+        
+    </div>
+{% endblock content %}

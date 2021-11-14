@@ -1,9 +1,18 @@
 {% load static %}
-<div>
-    <h1 class="marksheet-head d-flex align-items-center justify-content-center mb-5"> 
-        My Marksheets
-        <img class="mx-2"  src="{% static 'img/marksheet.jpg' %}" alt="">  
-    </h1>
+<div>  
+    <div class="header mb-5">
+        <h1 class="marksheet-head d-flex align-items-center"> 
+            My Marksheets
+            <img class="mx-2"  src="{% static 'img/marksheet.jpg' %}" alt="">  
+        </h1>
+        <div>
+            <a 
+                href="{% url 'AddMarksheet' %}"
+                class="btn btn-success">
+                <i class="far fa-plus-square"></i>
+            </a>
+        </div>
+    </div>
 
     <div class="marksheet-container">
 
@@ -25,10 +34,10 @@
                     
                     <div class="marksheet-btn-box d-flex  gap-3">
                         <div>
-                            <a class="btn btn-primary" href="{% url 'updateMarksheet' marksheet.marksheet.id %}"><i class="fas fa-pencil-alt mx-3"></i></a>
+                            <a class="btn btn-primary" href="{% url 'UpdateMarksheet' marksheet.marksheet.id %}"><i class="fas fa-pencil-alt mx-3"></i></a>
                         </div>
                         <div>
-                            <a class="btn btn-primary" href="{% url 'deleteMarksheet' marksheet.marksheet.id %}"> <i class="far mx-3 fa-trash-alt"></i></a>
+                            <a class="btn btn-primary" href="{% url 'DeleteMarksheet' marksheet.marksheet.id %}"> <i class="far mx-3 fa-trash-alt"></i></a>
                         </div>
                     </div>
                 </div>
