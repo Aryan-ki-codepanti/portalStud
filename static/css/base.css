@@ -1,3 +1,7 @@
 .fw-600{
     font-weight: 600;
 }
+
+.alert-box{
+    min-height: 72px;
+}

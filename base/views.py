@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-
+from django.contrib import messages
 from base.utils import getMarksheetSummary
 from base.models import User, MarkSheet
 from django.contrib.auth import login, logout, authenticate
@@ -13,6 +13,7 @@ from base.forms import MarkSheetForm
 # USER 
 @login_required(login_url="/login")
 def logout_student(request):
+    messages.success(request , "Logged out successfully")
     logout(request)
     return redirect("Home")
 
@@ -36,7 +37,6 @@ def home(request):
         context = {
 
         }
-
     return render(request, "base/home.html", context)
 
 # Delete Marksheet
@@ -52,7 +52,8 @@ def deleteMarksheet(request , id):
             "marksheet" : marksheet
         }
         return render( request , "base/deleteMarksheet.html" , context )
-        
+    # POST Request handle Delete
+    messages.success(request , "Marksheet deleted successfully") 
     marksheet.delete()
     return redirect("Home")
 
@@ -77,5 +78,6 @@ def updateMarksheet(request , id):
     form = MarkSheetForm(data=request.POST , instance=marksheet)
     if form.is_valid():
         form.save()
+    messages.success(request , "Marksheet updated  successfully") 
     return redirect("Home")
 
