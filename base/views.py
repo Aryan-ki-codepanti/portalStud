@@ -17,7 +17,18 @@ def login_student(request):
         return redirect("Home")
 
     if request.method == "POST":
-        pass
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        user = authenticate(request , email=email , password=password)
+
+        if not user:
+            messages.error(request , "Invalid login credentials")
+            return redirect("Login")
+
+        login(request , user)
+        messages.success(request , f"Logged in as @{ user.username }")
+        return redirect("Home")
     return render(request , "base/login.html")
 
 def register_student(request):

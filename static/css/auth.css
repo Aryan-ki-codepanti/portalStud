@@ -8,3 +8,12 @@
     top: 55%;
     cursor: pointer;
 }
+
+.auth-form-box{
+    font-family: Montserrat;
+}
+
+.auth-form-box p{
+    color: hsl(0, 4.8%, 55.5%);
+    font-size: 0.8rem;
+}
