@@ -6,10 +6,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from base.forms import MarkSheetForm
 
-# Create your views here.
-
-
-
 # USER 
 def login_student(request):
     
@@ -88,6 +84,22 @@ def home(request):
 
         }
     return render(request, "base/home.html", context)
+
+# Individual view of marksheet
+@login_required(login_url="/login")
+def viewMarksheet(request , id):
+    marksheet = MarkSheet.objects.get(id=id)
+
+    if not request.user.is_authenticated or request.user != marksheet.student:
+        messages.error(request , "You are not authorized to visit this path !")
+        return redirect("Home")
+
+    summary = getMarksheetSummary(marksheet)
+    context = {
+        "marksheet" : marksheet ,
+        "summary" : summary
+    }
+    return render(request , "base/marksheet.html" , context)
 
 # Delete Marksheet
 @login_required(login_url="/login")

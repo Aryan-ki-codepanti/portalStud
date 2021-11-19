@@ -1,0 +1,8 @@
+{% extends 'main.html' %} 
+
+{% block title %} {{ marksheet.name }} | PortalStud {% endblock title %}
+
+{% block content %}
+    <h1> {{ marksheet.name }} </h1>
+    <p> Highest : {{ summary.highest }} </p>
+{% endblock content %}
