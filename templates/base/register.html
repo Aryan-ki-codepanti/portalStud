@@ -1,12 +1,78 @@
-{% extends 'main.html' %}
-
-{% block title %}
-    Register | PortalStud
-{% endblock title %}
-
-
+{% extends 'main.html' %} 
+{% block title %} Login | PortalStud {% endblock title %} 
+{% load static %} 
 {% block content %}
-    <h1>
-        Hello Register
-    </h1>
-{% endblock content %}
+
+{% load static %}
+
+<div class="container">
+    <h1 class="marksheet-head text-center mb-4">Register for PortalStud</h1>
+
+    <div class="auth-form-box">
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="first-name" class="form-label">First Name</label>
+                <input
+                    id="first-name"
+                    name="first-name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter your first name"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="last-name" class="form-label">Last Name</label>
+                <input
+                    id="last-name"
+                    name="last-name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter your last name"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter your username"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter your email"
+                />
+            </div>
+            <div class="mb-3 password-box">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    name="password"
+                    id="password"
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter your password"
+                />
+                <div class="password-toggle">
+                    <i class="fas fa-eye"></i>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            <p class="mt-2">
+                Already have an account ?
+                <a href="{% url 'Login' %}"> Login </a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock content %} {% block js %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock js %}

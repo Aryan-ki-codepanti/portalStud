@@ -36,7 +36,29 @@ def register_student(request):
         return redirect("Home")
 
     if request.method == "POST":
-        pass
+        fname = request.POST["first-name"]
+        lname = request.POST["last-name"]
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        user = User.objects.filter(email = email)
+        if user.count() > 0:
+            messages.error(request , "A user with this email already exist")
+            return redirect("Register")
+
+        user = User(
+            first_name=fname,
+            last_name=lname,
+            email=email,
+            password=password,
+            username=username
+        )
+        user.save()
+        messages.success(request , "Your PortalStud Account has been created")
+        login(request , user)
+        return redirect("Home")
+
     return render(request , "base/register.html")
 
 @login_required(login_url="/login")
