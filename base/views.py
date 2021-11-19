@@ -11,6 +11,23 @@ from base.forms import MarkSheetForm
 
 
 # USER 
+def login_student(request):
+    
+    if request.user.is_authenticated:
+        return redirect("Home")
+
+    if request.method == "POST":
+        pass
+    return render(request , "base/login.html")
+
+def register_student(request):
+    if request.user.is_authenticated:
+        return redirect("Home")
+
+    if request.method == "POST":
+        pass
+    return render(request , "base/register.html")
+
 @login_required(login_url="/login")
 def logout_student(request):
     messages.success(request , "Logged out successfully")

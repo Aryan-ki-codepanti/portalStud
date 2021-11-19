@@ -1,0 +1,10 @@
+.password-box{
+    position: relative;
+}
+
+.password-toggle{
+    position: absolute;
+    right: 2%;
+    top: 55%;
+    cursor: pointer;
+}
